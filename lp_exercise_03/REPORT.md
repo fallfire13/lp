@@ -39,7 +39,7 @@ boat(2, 1).
 boat(3, 0).
 ```
 
-Реализуем предикат possible, который генерирует новые возможные состояния без проверки их на удовлетворение условий задачи.
+Реализуем предикат `possible`, который генерирует новые возможные состояния без проверки их на удовлетворение условий задачи.
 
 ```prolog
 possible(s(ML, LL, MR, LR, left), s(ML1, LL1, MR1, LR1, right)) :-
@@ -97,7 +97,7 @@ descMove(s(_, _, MR, LR, right), s(_, _, MR1, LR1, left), A) :-
     descConcat(AM, AL, A1), atom_concat(A1, ' swims to the left coast', A).
 ```
 
-Поиск в глубину:
+## Поиск в глубину:
 Данный поиск реализуется проще всего. Мы рекурсивно вызываем prolong, получая тем все возможные пути.
 
 ```prolog
@@ -107,7 +107,7 @@ deep(Path, End, NewPath) :- prolong(Path, Path1), deep(Path1, End, NewPath).
 deep(Path) :- deep([s(3,3,0,0,left)], s(0,0,3,3,right), Path).
 ```
 
-Пример использования:
+### Пример использования:
 
 ```prolog
 ?- deep(_Path), describe(_Path, Text).
@@ -119,8 +119,8 @@ Text = ['1 missioner and 1 cannibal swims to the right coast', '1 missioner swim
 false.
 ```
 
-Поиск в ширину:
-Вместо пути мы храним очередь из путей. Из очереди извлекается первый путь, продлевается всеми возможными способами с помощью findall, и полученные пути добавляются в конец очереди.
+## Поиск в ширину:
+Вместо пути мы храним очередь из путей. Из очереди извлекается первый путь, продлевается всеми возможными способами с помощью `findall` и полученные пути добавляются в конец очереди.
 
 ```prolog
 breath([[End|T]|_], End, [End|T]).
@@ -131,7 +131,7 @@ breath([_|T], End, NewPathes) :- breath(T, End, NewPathes).
 breath(Path) :- breath([[s(3,3,0,0,left)]], s(0,0,3,3,right), Path).
 ```
 
-Пример использования:
+### Пример использования:
 
 ```
 ?- breath(_Path), describe(_Path, Text).
@@ -142,7 +142,7 @@ Text = ['1 missioner and 1 cannibal swims to the right coast', '1 missioner swim
 false.
 ```
 
-Итерационный поиск в глубину:
+## Итерационный поиск в глубину:
 Реализуем предикат, генирирующий числа от 0 до A:
 
 ```prolog
@@ -164,7 +164,7 @@ ideep(Path, End, NewPath, Depth) :- Depth > 0, D1 is Depth - 1,
 ideep(Path) :- generate(X, 100), ideep([s(3,3,0,0,left)], s(0,0,3,3,right), Path, X).
 ```
 
-Пример использования:
+### Пример использования:
 
 ```prolog
 ?- iteration(Path).
@@ -175,7 +175,7 @@ Text = ['1 missioner and 1 cannibal swims to the right coast', '1 missioner swim
 false.
 ```
 
-Результаты
+## Результаты
 Найдём длины первых путей, найденных алгоритмами:
 
 ```prolog
