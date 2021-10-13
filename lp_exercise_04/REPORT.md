@@ -73,7 +73,7 @@ context(tolia, 'prit', tolin).
 context(volodia, 'prit', volodin).
 context(dima, 'prit', dimin).
 context(tima, 'prit', timin).
-```prolog
+```
 
 Отношение брат описывается следующим предикатом:
 
