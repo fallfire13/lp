@@ -1,5 +1,5 @@
 import string
-input_file = open("famTree.ged", 'r')
+input_file = open("FamilyTree.ged", 'r')
 output_file = open("result.pl", 'w')
 husb_id = ""
 wife_id = ""
