@@ -16,8 +16,6 @@ for input_string in input_file:
 
     elif input_string.find("SURN", 0, len(input_string)) > -1:
         surname = input_string[7:len(input_string) - 1]
-        #name = name.lower()
-        #surname = surname.lower()
         table[n] = name + ' ' + surname
         n = n + 1
         
